@@ -1,7 +1,4 @@
-import FileExtension from 'model/FileExtension';
 import CloseIcon from '@mui/icons-material/Close';
-import AddIcon from '@mui/icons-material/Add';
-import React from 'react';
 
 export const FileExtensionTag = ({
   name,
@@ -16,13 +13,9 @@ export const FileExtensionTag = ({
 }) => {
   return (
     <>
-      <span className={`file-extension-tag ${status}`}>
-        <p onClick={onAction}>{name}</p>
-        {status === 'custom' && (
-          <p onClick={onRemove}>
-            <CloseIcon />
-          </p>
-        )}
+      <span className={`file-extension-tag ${status}`} onClick={onAction}>
+        <p>{name}</p>
+        {status === 'custom' && <CloseIcon onClick={onRemove} />}
       </span>
     </>
   );
