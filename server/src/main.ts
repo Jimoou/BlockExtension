@@ -11,7 +11,9 @@ async function bootstrap() {
   const server = express();
   const adapter = new ExpressAdapter(server);
   const app = await NestFactory.create(AppModule, adapter, {
-    cors: true,
+    cors: {
+      origin: process.env.CLIENT_URL,
+    },
     logger: ['log', 'error', 'warn', 'debug'],
   });
   app.useGlobalPipes(
