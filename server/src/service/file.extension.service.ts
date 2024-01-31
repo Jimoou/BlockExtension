@@ -1,4 +1,4 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FileExtension } from 'src/model/dao/file.extension.entity';
 import { CreateExtensionDto } from 'src/model/dto/create-extension.dto';
@@ -21,20 +21,20 @@ export class FileExtensionService {
     }
     const extension = this.extensions.create(extDto);
     await this.extensions.save(extension);
-    return extension;
+    return { statusCode: HttpStatus.CREATED, message: '생성되었습니다.' };
   }
 
   findAll() {
     return this.extensions.find();
   }
 
-  async update(id: string, extDto: UpdateExtensionDto) {
-    const extension = await this.extensions.findOneBy({ id });
+  async update(extDto: UpdateExtensionDto) {
+    const extension = await this.extensions.findOneBy({ id: extDto.id });
     if (!extension) {
-      throw new NotFoundException(`해당 ${id}를 찾을 수 없습니다.`);
+      throw new NotFoundException(`해당 ${extDto.id}를 찾을 수 없습니다.`);
     }
-
-    return this.extensions.save({ ...extension, ...extDto });
+    await this.extensions.save({ ...extension, ...extDto });
+    return { statusCode: HttpStatus.OK, message: '업데이트 되었습니다.' };
   }
 
   async delete(id: string) {
@@ -42,7 +42,7 @@ export class FileExtensionService {
     if (!extension) {
       throw new NotFoundException(`해당 ${id}를 찾을 수 없습니다.`);
     }
-
-    return this.extensions.remove(extension);
+    await this.extensions.remove(extension);
+    return { statusCode: HttpStatus.OK, message: '삭제 되었습니다.' };
   }
 }

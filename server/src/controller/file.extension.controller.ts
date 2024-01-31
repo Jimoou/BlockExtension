@@ -17,12 +17,12 @@ export class FileExtensionController {
     return this.fileExtensionService.findAll();
   }
 
-  @Put(':/id')
-  updateExtension(@Param('id') id: string, @Body() body: UpdateExtensionDto) {
-    return this.fileExtensionService.update(id, body);
+  @Put()
+  updateExtension(@Body() body: UpdateExtensionDto) {
+    return this.fileExtensionService.update(body);
   }
 
-  @Delete(':/id')
+  @Delete('/:id')
   deleteById(@Param('id') id: string) {
     return this.fileExtensionService.delete(id);
   }
