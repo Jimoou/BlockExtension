@@ -30,7 +30,7 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
-
+.cache
 ### react ###
 .DS_*
 *.log
@@ -40,7 +40,7 @@ logs
 .env
 node_modules
 bower_components
-
+build
 *.sublime*
 
 psd

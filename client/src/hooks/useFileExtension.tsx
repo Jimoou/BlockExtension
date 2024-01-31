@@ -24,7 +24,7 @@ export const useFileExtensions = () => {
     const filteredCustom: FileExtension[] = [];
     const filteredBlocked: FileExtension[] = [];
 
-    extensions.forEach((ext) => {
+    Array.from(extensions).forEach((ext) => {
       if (ext.block) {
         filteredBlocked.push(ext);
       } else {
