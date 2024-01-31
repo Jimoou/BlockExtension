@@ -1,5 +1,6 @@
-import FileExtension from 'model/FileExtension';
+import FileExtension from 'model/FileExtensionDto';
 import { useState, useEffect } from 'react';
+import { findAllExtensions } from 'service/FileExtensionService';
 
 export const useFileExtensions = () => {
   const [extensions, setExtensions] = useState<FileExtension[]>([]);
@@ -8,14 +9,15 @@ export const useFileExtensions = () => {
   const [blockedExtensions, setBlockedExtensions] = useState<FileExtension[]>([]);
 
   useEffect(() => {
-    // TODO : 서버에서 extensions 데이터를 가져오는 API 호출
-    const fetchData = async () => {
-      // const data = await fetchExtensions();
-      // setExtensions(data);
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const data = await findAllExtensions();
+    if (data) {
+      setExtensions(data);
+    }
+  };
 
   useEffect(() => {
     const filteredFix: FileExtension[] = [];
@@ -23,14 +25,15 @@ export const useFileExtensions = () => {
     const filteredBlocked: FileExtension[] = [];
 
     extensions.forEach((ext) => {
-      if (ext.status === 'fixed') {
-        filteredFix.push(ext);
-      }
-      if (ext.status === 'custom') {
-        filteredCustom.push(ext);
-      }
       if (ext.block) {
         filteredBlocked.push(ext);
+      } else {
+        if (ext.status === 'fix') {
+          filteredFix.push(ext);
+        }
+        if (ext.status === 'custom') {
+          filteredCustom.push(ext);
+        }
       }
     });
 
@@ -39,5 +42,5 @@ export const useFileExtensions = () => {
     setBlockedExtensions(filteredBlocked);
   }, [extensions]);
 
-  return { extensions, fixExtensions, customExtensions, blockedExtensions };
+  return { extensions, fixExtensions, customExtensions, blockedExtensions, fetchData };
 };
