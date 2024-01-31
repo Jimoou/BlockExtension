@@ -75,29 +75,33 @@ export default () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>커스텀 확장자</h2>
-        <div>
+    <div className='container'>
+      <h2>파일 확장자 차단</h2>
+      <div className='content'>
+        <h3>확장자 목록</h3>
+        <div className='header'>
+          <h4>자주쓰는 확장자</h4>
+        </div>
+        <div className='box'>
+          {fixExtensions.map((ext) => (
+            <FileExtensionTag key={ext.id} name={ext.name} status='fix' onAction={() => moveExtension(ext)} />
+          ))}
+        </div>
+        <div className='header'>
+          <h4>직접 추가한 확장자</h4>
+          <p className='text'>
+            {count.currentCustomExt} / {count.maximumCustomExt}
+          </p>
           <input
             type='text'
             onChange={(event) => handleInputChange(event)}
             value={customExtension}
             placeholder='확장자 이름을 입력하세요.'
           />
-          {errorMessage && <p>{errorMessage}</p>}
           <button onClick={() => createExtension()}>추가</button>
+          {errorMessage && <p className='text error'>{errorMessage}</p>}
         </div>
-        <div>
-          {count.currentCustomExt} / {count.maximumCustomExt}
-        </div>
-      </div>
-      <div>
-        <h2>차단할 확장자</h2>
-        <div>
-          {fixExtensions.map((ext) => (
-            <FileExtensionTag key={ext.id} name={ext.name} status='fix' onAction={() => moveExtension(ext)} />
-          ))}
+        <div className='box'>
           {customExtensions.map((ext) => (
             <FileExtensionTag
               key={ext.id}
@@ -109,9 +113,9 @@ export default () => {
           ))}
         </div>
       </div>
-      <div>
-        <h2>차단된 확장자</h2>
-        <div>
+      <div className='content'>
+        <h3>차단된 확장자 목록</h3>
+        <div className='box'>
           {blockedExtensions.length > 0 ? (
             <>
               {blockedExtensions.map((ext) => (
@@ -119,7 +123,7 @@ export default () => {
               ))}
             </>
           ) : (
-            <p>차단할 확장자를 옆 박스에서 추가해보세요.</p>
+            <p className='text info'>차단할 확장자를 위에서 클릭하여 추가해보세요.</p>
           )}
         </div>
       </div>
