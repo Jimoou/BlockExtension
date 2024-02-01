@@ -13,6 +13,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, adapter, {
     cors: {
       origin: process.env.CLIENT_URL,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
     },
     logger: ['log', 'error', 'warn', 'debug'],
   });
