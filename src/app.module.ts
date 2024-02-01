@@ -6,11 +6,11 @@ import { FileExtensionModule } from './module/file.extension.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.RDS_HOST,
-      port: 3306,
-      username: process.env.RDS_USERNAME,
-      password: process.env.RDS_PASSWORD,
-      database: process.env.RDS_DATABASE,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: false,
     }),
