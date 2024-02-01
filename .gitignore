@@ -30,7 +30,6 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
-.firebase
 ### react ###
 .DS_*
 *.log
