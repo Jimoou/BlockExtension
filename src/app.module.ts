@@ -5,9 +5,9 @@ import { FileExtensionModule } from './module/file.extension.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'mariadb',
       host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
+      port: 32591,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
