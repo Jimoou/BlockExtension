@@ -1,4 +1,3 @@
-import http from 'http';
 import express from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
@@ -27,7 +26,7 @@ async function bootstrap() {
   await app.init();
 
   const port = process.env.PORT;
-  http.createServer(server).listen(port);
+  server.listen(port);
   console.info('server is running on ', port);
 }
 
