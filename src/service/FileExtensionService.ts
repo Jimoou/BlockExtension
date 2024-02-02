@@ -2,7 +2,7 @@ import axios from 'axios';
 import CreateExtensionDto from 'model/CreateExtensionDto';
 import UpdateExtensionDto from 'model/UpdateExtensionDto';
 
-const API = `${process.env.REACT_APP_SERVER_URL}/file-extenion`;
+const API = `${process.env.REACT_APP_SERVER_URL}/file-extension`;
 
 export const createCustomExtension = async (body: CreateExtensionDto) => {
   try {
