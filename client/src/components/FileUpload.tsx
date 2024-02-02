@@ -8,8 +8,8 @@ export const FileUpload = () => {
   const { modalInfo, openModal, closeModal } = useModal();
 
   const handleFileChange = async (event: any) => {
-    if (event.target.file) {
-      setFile(event.target.file);
+    if (event.target.files) {
+      setFile(event.target.files[0]);
     }
   };
 
@@ -24,6 +24,8 @@ export const FileUpload = () => {
         setFile(null);
       }
       openModal(response.message, closeModal, '확인');
+    } else {
+      openModal('파일을 첨부하세요.', closeModal, '확인');
     }
   };
 
