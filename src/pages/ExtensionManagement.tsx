@@ -1,11 +1,12 @@
 import { FileExtensionTag } from 'components/FileExtensionTag';
+import { FileUpload } from 'components/FileUpload';
 import { Modal } from 'components/Modal';
 import { useFileExtensions } from 'hooks/useFileExtension';
 import { useModal } from 'hooks/useModal';
 import CreateExtensionDto from 'model/CreateExtensionDto';
 import FileExtensionDto from 'model/FileExtensionDto';
 import UpdateExtensionDto from 'model/UpdateExtensionDto';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { createCustomExtension, deleteById, updateExtension } from 'service/FileExtensionService';
 
 export default () => {
@@ -83,9 +84,10 @@ export default () => {
           <h4>자주쓰는 확장자</h4>
         </div>
         <div className='box'>
-          {fixExtensions.map((ext) => (
-            <FileExtensionTag key={ext.id} name={ext.name} status='fix' onAction={() => moveExtension(ext)} />
-          ))}
+          {fixExtensions &&
+            fixExtensions.map((ext) => (
+              <FileExtensionTag key={ext.id} name={ext.name} status='fix' onAction={() => moveExtension(ext)} />
+            ))}
         </div>
         <div className='header'>
           <h4>직접 추가한 확장자</h4>
@@ -102,21 +104,27 @@ export default () => {
           {errorMessage && <p className='text error'>{errorMessage}</p>}
         </div>
         <div className='box'>
-          {customExtensions.map((ext) => (
-            <FileExtensionTag
-              key={ext.id}
-              name={ext.name}
-              status='custom'
-              onAction={() => moveExtension(ext)}
-              onRemove={() => removeExtension(ext.id)}
-            />
-          ))}
+          {customExtensions ? (
+            <>
+              {customExtensions.map((ext) => (
+                <FileExtensionTag
+                  key={ext.id}
+                  name={ext.name}
+                  status='custom'
+                  onAction={() => moveExtension(ext)}
+                  onRemove={() => removeExtension(ext.id)}
+                />
+              ))}
+            </>
+          ) : (
+            <p className='text info'>확장자명을 직접 작성해보세요.</p>
+          )}
         </div>
       </div>
       <div className='content'>
         <h3>차단된 확장자 목록</h3>
         <div className='box'>
-          {blockedExtensions.length > 0 ? (
+          {blockedExtensions ? (
             <>
               {blockedExtensions.map((ext) => (
                 <FileExtensionTag key={ext.id} name={ext.name} status='blocked' onAction={() => moveExtension(ext)} />
@@ -125,6 +133,12 @@ export default () => {
           ) : (
             <p className='text info'>차단할 확장자를 위에서 클릭하여 추가해보세요.</p>
           )}
+        </div>
+      </div>
+      <div className='content'>
+        <h3>파일 첨부하고 전송하기</h3>
+        <div className='box'>
+          <FileUpload />
         </div>
       </div>
       {modalInfo.isOpen && (
