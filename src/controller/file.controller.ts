@@ -3,7 +3,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from 'src/service/file.service';
 
 @Controller('file')
-export class FileExtensionController {
+export class FileController {
   constructor(private fileService: FileService) {}
 
   @Post()
