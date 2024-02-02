@@ -8,7 +8,9 @@
 
 ## 프로젝트 실행
 
-### [Client](https://github.com/Jimoou/BlockExtension/tree/client)
+### [Client branch](https://github.com/Jimoou/BlockExtension/tree/client)
+
+### [src](https://github.com/Jimoou/BlockExtension/tree/server/src)
 
 ```
 cd client
@@ -16,7 +18,9 @@ npm install
 npm start
 ```
 
-### [Server](https://github.com/Jimoou/BlockExtension/tree/server)
+### [Server branch](https://github.com/Jimoou/BlockExtension/tree/server)
+
+### [src](https://github.com/Jimoou/BlockExtension/tree/client/src)
 
 ```
 cd server
@@ -75,3 +79,7 @@ npm start
 
 - 서버 계층에서 명확한 응답 반환으로 클라이언트 화면에 표시.
 - 직관적인 UI/UX로 사용성 증진.
+
+3. 파일 첨부 & 전송 코드 구현
+
+- 서버 계층에서 파일 확장자명을 이용한 유효성 검사.
