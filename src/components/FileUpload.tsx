@@ -30,7 +30,7 @@ export const FileUpload = () => {
   return (
     <>
       <input type='file' onChange={handleFileChange} />
-      <button onClick={handleUpload}>전송</button>
+      <button onClick={() => handleUpload()}>전송</button>
       {modalInfo.isOpen && (
         <Modal message={modalInfo.message} action={modalInfo.action} buttonName={modalInfo.buttonName} />
       )}
