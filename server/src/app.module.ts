@@ -5,12 +5,12 @@ import { FileExtensionModule } from './module/file.extension.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.RDS_HOST,
-      port: 3306,
-      username: process.env.RDS_USERNAME,
-      password: process.env.RDS_PASSWORD,
-      database: process.env.RDS_DATABASE,
+      type: 'mariadb',
+      host: process.env.DB_HOST,
+      port: 32591,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: false,
     }),

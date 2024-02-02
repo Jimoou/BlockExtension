@@ -4,9 +4,11 @@ export class UpdateExtensionDto {
   @IsNotEmpty()
   @IsString()
   id: string;
+
   @IsNotEmpty()
   @IsString()
   name: string;
+
   @IsNotEmpty()
   @IsBoolean()
   block: boolean;

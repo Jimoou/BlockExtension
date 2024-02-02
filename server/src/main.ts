@@ -1,4 +1,3 @@
-import http from 'http';
 import express from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
@@ -13,6 +12,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, adapter, {
     cors: {
       origin: process.env.CLIENT_URL,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
     },
     logger: ['log', 'error', 'warn', 'debug'],
   });
@@ -24,7 +26,7 @@ async function bootstrap() {
   await app.init();
 
   const port = process.env.PORT;
-  http.createServer(server).listen(port);
+  server.listen(port);
   console.info('server is running on ', port);
 }
 
