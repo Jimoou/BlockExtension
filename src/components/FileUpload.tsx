@@ -24,6 +24,8 @@ export const FileUpload = () => {
         setFile(null);
       }
       openModal(response.message, closeModal, '확인');
+    } else {
+      openModal('파일을 첨부하세요.', closeModal, '확인');
     }
   };
 
