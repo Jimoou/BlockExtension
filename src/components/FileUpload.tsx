@@ -8,8 +8,8 @@ export const FileUpload = () => {
   const { modalInfo, openModal, closeModal } = useModal();
 
   const handleFileChange = async (event: any) => {
-    if (event.target.file) {
-      setFile(event.target.file);
+    if (event.target.files) {
+      setFile(event.target.files[0]);
     }
   };
 
