@@ -64,7 +64,7 @@ npm start
 
 ### RDB
 
-<img width="614" alt="스크린샷 2024-02-02 오후 1 20 18" src="https://github.com/Jimoou/Jimoou/assets/109801772/3402b796-9d0c-4698-89ef-4d2296f7ab68">
+<img width="616" alt="스크린샷 2024-02-11 오후 4 32 14" src="https://github.com/Jimoou/BlockExtension/assets/109801772/2edd5796-4347-4504-9d8a-418d277271df">
 
 ### description
 
